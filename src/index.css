@@ -143,6 +143,140 @@
   .glass-nav {
     @apply bg-white/70 backdrop-blur-2xl border border-white/30 shadow-[0_4px_20px_hsl(210_15%_15%_/_0.08)];
   }
+
+  /* Auth Page Dark Glass Effects */
+  .glass-card-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)];
+  }
+
+  /* Auth Page Styles */
+  .auth-page {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    position: relative;
+  }
+
+  .auth-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* Floating Particles Animation */
+  .floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .particle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
+  }
+
+  .particle-1 { width: 4px; height: 4px; top: 10%; left: 10%; animation-delay: 0s; }
+  .particle-2 { width: 6px; height: 6px; top: 20%; left: 80%; animation-delay: 2s; }
+  .particle-3 { width: 3px; height: 3px; top: 30%; left: 30%; animation-delay: 4s; }
+  .particle-4 { width: 5px; height: 5px; top: 40%; left: 70%; animation-delay: 6s; }
+  .particle-5 { width: 4px; height: 4px; top: 50%; left: 20%; animation-delay: 8s; }
+  .particle-6 { width: 7px; height: 7px; top: 60%; left: 90%; animation-delay: 10s; }
+  .particle-7 { width: 3px; height: 3px; top: 70%; left: 50%; animation-delay: 12s; }
+  .particle-8 { width: 5px; height: 5px; top: 80%; left: 15%; animation-delay: 14s; }
+  .particle-9 { width: 4px; height: 4px; top: 90%; left: 75%; animation-delay: 1s; }
+  .particle-10 { width: 6px; height: 6px; top: 15%; left: 60%; animation-delay: 3s; }
+  .particle-11 { width: 3px; height: 3px; top: 25%; left: 85%; animation-delay: 5s; }
+  .particle-12 { width: 5px; height: 5px; top: 35%; left: 5%; animation-delay: 7s; }
+  .particle-13 { width: 4px; height: 4px; top: 45%; left: 95%; animation-delay: 9s; }
+  .particle-14 { width: 6px; height: 6px; top: 55%; left: 40%; animation-delay: 11s; }
+  .particle-15 { width: 3px; height: 3px; top: 65%; left: 25%; animation-delay: 13s; }
+  .particle-16 { width: 5px; height: 5px; top: 75%; left: 65%; animation-delay: 15s; }
+  .particle-17 { width: 4px; height: 4px; top: 85%; left: 35%; animation-delay: 2.5s; }
+  .particle-18 { width: 7px; height: 7px; top: 5%; left: 45%; animation-delay: 4.5s; }
+  .particle-19 { width: 3px; height: 3px; top: 95%; left: 55%; animation-delay: 6.5s; }
+  .particle-20 { width: 5px; height: 5px; top: 12%; left: 25%; animation-delay: 8.5s; }
+
+  /* Gradient Waves */
+  .gradient-waves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .wave {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.02), transparent);
+    animation: wave 20s infinite linear;
+  }
+
+  .wave-1 {
+    top: -50%;
+    left: -50%;
+    animation-delay: 0s;
+  }
+
+  .wave-2 {
+    top: -50%;
+    left: -50%;
+    animation-delay: 7s;
+    background: linear-gradient(-45deg, transparent, rgba(255,255,255,0.01), transparent);
+  }
+
+  .wave-3 {
+    top: -50%;
+    left: -50%;
+    animation-delay: 14s;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.015), transparent);
+  }
+
+  /* Auth Form Styles */
+  .auth-card {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .floating-label-group {
+    position: relative;
+  }
+
+  .auth-input {
+    @apply w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-transparent;
+    @apply focus:border-white/40 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/10;
+    @apply transition-all duration-300;
+  }
+
+  .floating-label {
+    @apply absolute left-4 transition-all duration-300 pointer-events-none text-gray-400;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .auth-input:not(:placeholder-shown) + .floating-label,
+  .auth-input:focus + .floating-label {
+    @apply text-xs text-white/80;
+    top: 0;
+    transform: translateY(-50%);
+    background: linear-gradient(to right, black, black);
+    padding: 0 8px;
+  }
+
+  .auth-button {
+    @apply bg-white text-black font-semibold py-3 px-6 rounded-lg;
+    @apply hover:bg-gray-100 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)];
+    @apply transition-all duration-300 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-white/20;
+  }
+
+  .auth-toggle-link {
+    @apply text-white font-medium hover:text-gray-300;
+    @apply transition-all duration-300 hover:scale-105;
+    @apply underline underline-offset-4 decoration-white/50 hover:decoration-white;
+  }
   
   .scan-animation {
     background: var(--gradient-scan);
@@ -224,4 +358,35 @@
   0% { transform: translateX(-100%); }
   50% { transform: translateX(0%); }
   100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(0px) rotate(360deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(40px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
 }
