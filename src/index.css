@@ -2,41 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Medical AI Assistant Design System - Apple iOS 18.2 Inspired */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Medical Professional Color Palette */
+    --background: 220 20% 98%;
+    --foreground: 210 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Medical Blue Primary */
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 211 100% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Soft Medical Greys */
+    --secondary: 220 15% 96%;
+    --secondary-foreground: 210 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 15% 95%;
+    --muted-foreground: 210 10% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 211 85% 95%;
+    --accent-foreground: 211 100% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Medical Alert Colors */
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Glass and Blur Effects */
+    --glass-bg: 0 0% 100% / 0.8;
+    --glass-border: 220 15% 90% / 0.5;
+    --glass-shadow: 210 15% 15% / 0.1;
 
-    --radius: 0.5rem;
+    --border: 220 15% 90%;
+    --input: 220 15% 96%;
+    --ring: 211 100% 50%;
+
+    --radius: 1rem;
+
+    /* Medical Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(211 100% 50%), hsl(211 100% 65%));
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(220 15% 98% / 0.7));
+    --gradient-scan: linear-gradient(90deg, transparent, hsl(211 100% 50% / 0.3), transparent);
+    
+    /* Medical Shadows */
+    --shadow-soft: 0 4px 20px hsl(210 15% 15% / 0.08);
+    --shadow-glass: 0 8px 32px hsl(210 15% 15% / 0.12);
+    --shadow-glow: 0 0 30px hsl(211 100% 50% / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-swift: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +129,99 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-medium antialiased;
+    background: linear-gradient(135deg, hsl(220 20% 98%), hsl(210 25% 95%));
   }
+}
+
+@layer components {
+  /* Glass Effect Components */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_hsl(210_15%_15%_/_0.12)];
+  }
+  
+  .glass-nav {
+    @apply bg-white/70 backdrop-blur-2xl border border-white/30 shadow-[0_4px_20px_hsl(210_15%_15%_/_0.08)];
+  }
+  
+  .scan-animation {
+    background: var(--gradient-scan);
+    animation: scan 2s ease-in-out infinite;
+  }
+  
+  /* Apple-style Hover Effects */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-[0_12px_40px_hsl(210_15%_15%_/_0.15)];
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 ease-out hover:shadow-[0_0_30px_hsl(211_100%_50%_/_0.3)];
+  }
+  
+  /* Medical Progress Components */
+  .progress-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+  }
+  
+  /* Fade Animations */
+  .fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .slide-down {
+    animation: slideDown 0.4s ease-out forwards;
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  /* Upload Zone */
+  .upload-zone {
+    @apply glass-card hover-lift border-dashed border-2 transition-all duration-300;
+    background: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(220 15% 98% / 0.7));
+  }
+  
+  .upload-zone.drag-over {
+    @apply border-primary bg-primary/5 scale-[1.02];
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.2);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    max-height: 0;
+    opacity: 0;
+  }
+  to { 
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
 }
