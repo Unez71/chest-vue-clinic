@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Home, Upload, History, Settings, Activity } from "lucide-react";
+import { Home, Upload, History, Settings, Activity, LogIn } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface NavigationProps {
   activeSection: string;
@@ -7,6 +8,8 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ activeSection, setActiveSection }: NavigationProps) => {
+  const navigate = useNavigate();
+  
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "upload", icon: Upload, label: "Upload" },
@@ -48,6 +51,19 @@ export const Navigation = ({ activeSection, setActiveSection }: NavigationProps)
               </button>
             );
           })}
+          
+          {/* Auth Button */}
+          <div className="ml-4 pl-4 border-l border-white/20">
+            <button
+              onClick={() => navigate('/auth')}
+              className="flex items-center px-4 py-2 rounded-xl transition-all duration-300 ease-out text-muted-foreground hover:text-foreground hover:bg-white/50 hover:scale-105"
+            >
+              <LogIn className="h-5 w-5" />
+              <span className="ml-2 text-sm font-medium">
+                Sign In
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
