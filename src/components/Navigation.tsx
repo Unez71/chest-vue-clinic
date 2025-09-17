@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Home, Upload, History, Settings, Activity, LogIn } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Home, Upload, Settings, LogIn, LogOut, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface NavigationProps {
@@ -9,12 +9,26 @@ interface NavigationProps {
 
 export const Navigation = ({ activeSection, setActiveSection }: NavigationProps) => {
   const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    const auth = localStorage.getItem('isAuthenticated');
+    const email = localStorage.getItem('userEmail');
+    setIsAuthenticated(auth === 'true');
+    setUserEmail(email || '');
+  }, []);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userEmail');
+    setIsAuthenticated(false);
+    setUserEmail('');
+  };
   
   const navItems = [
     { id: "home", icon: Home, label: "Home" },
     { id: "upload", icon: Upload, label: "Upload" },
-    { id: "history", icon: History, label: "History" },
-    { id: "activity", icon: Activity, label: "Activity" },
     { id: "settings", icon: Settings, label: "Settings" },
   ];
 
@@ -54,15 +68,33 @@ export const Navigation = ({ activeSection, setActiveSection }: NavigationProps)
           
           {/* Auth Button */}
           <div className="ml-4 pl-4 border-l border-white/20">
-            <button
-              onClick={() => navigate('/auth')}
-              className="flex items-center px-4 py-2 rounded-xl transition-all duration-300 ease-out text-muted-foreground hover:text-foreground hover:bg-white/50 hover:scale-105"
-            >
-              <LogIn className="h-5 w-5" />
-              <span className="ml-2 text-sm font-medium">
-                Sign In
-              </span>
-            </button>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-2">
+                <div className="flex items-center px-3 py-2 rounded-xl bg-primary/10">
+                  <User className="h-4 w-4 text-primary mr-2" />
+                  <span className="text-xs text-primary font-medium">{userEmail}</span>
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="flex items-center px-4 py-2 rounded-xl transition-all duration-300 ease-out text-muted-foreground hover:text-foreground hover:bg-white/50 hover:scale-105"
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span className="ml-2 text-sm font-medium">
+                    Sign Out
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate('/auth')}
+                className="flex items-center px-4 py-2 rounded-xl transition-all duration-300 ease-out text-muted-foreground hover:text-foreground hover:bg-white/50 hover:scale-105"
+              >
+                <LogIn className="h-5 w-5" />
+                <span className="ml-2 text-sm font-medium">
+                  Sign In
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>

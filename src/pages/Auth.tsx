@@ -15,8 +15,15 @@ const Auth = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    // Handle authentication logic here
+    console.log(isLogin ? 'Logging in...' : 'Signing up...', formData);
+    
+    // Simulate successful auth and redirect
+    setTimeout(() => {
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userEmail', formData.email);
+      window.location.href = '/';
+    }, 1000);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,9 +55,9 @@ const Auth = () => {
           {/* Logo/Title */}
           <div className="text-center mb-8 fade-in-up">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
-              ChestAI
+              AI DIAGNOSTIC
             </h1>
-            <p className="text-gray-400 text-sm">Advanced Chest X-Ray Diagnostics</p>
+            <p className="text-gray-400 text-sm">ASSISTANT FOR MEDICAL IMAGING</p>
           </div>
 
           {/* Auth Card */}
@@ -62,7 +69,7 @@ const Auth = () => {
               <CardDescription className="text-gray-400">
                 {isLogin 
                   ? 'Sign in to access your diagnostic dashboard'
-                  : 'Join us to start analyzing chest X-rays'
+                  : 'Join us to start analyzing X-ray images'
                 }
               </CardDescription>
             </CardHeader>

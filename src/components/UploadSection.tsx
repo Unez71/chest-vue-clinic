@@ -53,7 +53,7 @@ export const UploadSection = ({ onImageUpload, isAnalyzing }: UploadSectionProps
     <section className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Upload Chest X-Ray</h2>
+          <h2 className="text-3xl font-bold mb-4">Upload X-Ray Image</h2>
           <p className="text-muted-foreground">
             Drag and drop your X-ray image or click to browse
           </p>

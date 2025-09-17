@@ -21,10 +21,10 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
         {/* Main Title */}
         <div className="mb-8">
           <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-            ChestAI
+            AI DIAGNOSTIC
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-            Advanced Chest X-Ray Diagnostic Assistant
+            ASSISTANT FOR MEDICAL IMAGING
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             <Brain className="h-12 w-12 text-primary mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">AI-Powered Analysis</h3>
             <p className="text-muted-foreground text-sm">
-              Advanced machine learning algorithms for precise diagnostics
+              AI-powered analysis that gives quick and reliable results
             </p>
           </div>
           
@@ -52,7 +52,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
             <h3 className="text-lg font-semibold mb-2">Medical Grade</h3>
             <p className="text-muted-foreground text-sm">
-              HIPAA compliant with hospital-grade security standards
+              Medical grade security with hospital-level standards
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
           </button>
           
           <p className="text-sm text-muted-foreground mt-4">
-            Upload your chest X-ray for instant AI-powered analysis
+            Upload your X-ray image for instant AI-powered analysis
           </p>
         </div>
       </div>
