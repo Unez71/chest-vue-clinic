@@ -1,21 +1,35 @@
-import { useState } from "react";
-import { Monitor, Moon, Sun, Type, Palette } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Moon, Sun, Palette } from "lucide-react";
 
 export const SettingsSection = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [fontStyle, setFontStyle] = useState<'default' | 'modern' | 'elegant'>('default');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    // Apply theme on component mount
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, []);
 
   const handleThemeChange = (newTheme: 'light' | 'dark') => {
     setTheme(newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    
+    // Store preference in localStorage
+    localStorage.setItem('theme', newTheme);
   };
 
-  const handleFontChange = (newFont: 'default' | 'modern' | 'elegant') => {
-    setFontStyle(newFont);
-    document.documentElement.className = document.documentElement.className
-      .replace(/font-\w+/g, '')
-      .concat(` font-${newFont}`);
-  };
+  useEffect(() => {
+    // Load theme from localStorage on mount
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    }
+  }, []);
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4">
@@ -62,83 +76,11 @@ export const SettingsSection = () => {
             </div>
           </div>
 
-          {/* Font Style Settings */}
+          {/* Additional Settings Placeholder */}
           <div className="glass-card p-6 rounded-2xl">
-            <div className="flex items-center mb-4">
-              <Type className="h-6 w-6 text-primary mr-3" />
-              <h3 className="text-xl font-semibold">Font Style</h3>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-4">
-              <button
-                onClick={() => handleFontChange('default')}
-                className={`p-4 rounded-xl transition-all duration-300 border-2 ${
-                  fontStyle === 'default'
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border hover:border-primary/50'
-                }`}
-              >
-                <div className="text-lg font-medium mb-1">Aa</div>
-                <div className="text-xs">Default</div>
-              </button>
-              
-              <button
-                onClick={() => handleFontChange('modern')}
-                className={`p-4 rounded-xl transition-all duration-300 border-2 ${
-                  fontStyle === 'modern'
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border hover:border-primary/50'
-                }`}
-              >
-                <div className="text-lg font-bold mb-1 font-mono">Aa</div>
-                <div className="text-xs">Modern</div>
-              </button>
-              
-              <button
-                onClick={() => handleFontChange('elegant')}
-                className={`p-4 rounded-xl transition-all duration-300 border-2 ${
-                  fontStyle === 'elegant'
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border hover:border-primary/50'
-                }`}
-              >
-                <div className="text-lg font-light mb-1 font-serif">Aa</div>
-                <div className="text-xs">Elegant</div>
-              </button>
-            </div>
-          </div>
-
-          {/* User Preferences */}
-          <div className="glass-card p-6 rounded-2xl">
-            <div className="flex items-center mb-4">
-              <Monitor className="h-6 w-6 text-primary mr-3" />
-              <h3 className="text-xl font-semibold">Display Settings</h3>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">High Contrast Mode</span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" className="sr-only peer" />
-                  <div className="relative w-11 h-6 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                </label>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Large Text Size</span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" className="sr-only peer" />
-                  <div className="relative w-11 h-6 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                </label>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Reduced Motion</span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" className="sr-only peer" />
-                  <div className="relative w-11 h-6 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                </label>
-              </div>
+            <div className="text-center py-8">
+              <h3 className="text-xl font-semibold mb-2">Additional Settings</h3>
+              <p className="text-muted-foreground">Adding Soon...</p>
             </div>
           </div>
         </div>
